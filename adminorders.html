@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orders — Arcadia Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="dashboard.css" rel="stylesheet"/>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-avatar"><i class="bi bi-stars"></i></div>
+      <div class="brand-text">
+        <div class="name">Arcadia Admin</div>
+        <div class="sub">Control Panel</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="index.html"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+      <a class="nav-item" href="adminproducts.html"><i class="bi bi-box-seam"></i> Products</a>
+      <a class="nav-item" href="admininventory.html"><i class="bi bi-archive"></i> Inventory</a>
+      <a class="nav-item active" href="adminorders.html">
+        <i class="bi bi-receipt"></i> Orders
+        <i class="bi bi-chevron-right chevron"></i>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+  <div class="user-row">
+    <div class="user-avatar">A</div>
+    <div>
+      <div class="user-name">Admin User</div>
+      <div class="user-role">Administrator</div>
+    </div>
+  </div>
+  <a class="logout-btn" href="#" onclick="alert('Logout functionality coming soon.');return false;">
+    <i class="bi bi-box-arrow-left"></i> Logout
+  </a>
+</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1 class="page-title">Order Management</h1>
+    <p class="page-sub" id="orderCount">5 total orders</p>
+    <div class="stats-row" id="orderStatCards" style="grid-template-columns: repeat(5,1fr);"></div>
+    <div class="toolbar">
+      <div class="search-wrap">
+        <i class="bi bi-search"></i>
+        <input type="text" id="orderSearch" placeholder="Search by order ID, customer name, or email..." oninput="renderOrders()"/>
+      </div>
+      <select class="status-select" id="statusFilter" onchange="renderOrders()">
+        <option value="All Statuses">All Statuses</option>
+        <option value="Pending">Pending</option>
+        <option value="Processing">Processing</option>
+        <option value="Shipped">Shipped</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+    </div>
+    <div class="table-card">
+      <div class="table-head-orders">
+        <div>Order ID</div><div>Customer</div><div>Date</div><div>Items</div><div>Total</div><div>Status</div><div>Actions</div>
+      </div>
+      <div id="orderList"></div>
+    </div>
+  </main>
+
+  <!-- ORDER DETAIL MODAL -->
+  <div class="modal-overlay" id="orderModalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="orderModalTitle">Order Details</div>
+        <button class="modal-close" onclick="closeOrderModal()"><i class="bi bi-x"></i></button>
+      </div>
+      <div id="orderModalBody"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
